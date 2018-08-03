@@ -1,0 +1,84 @@
+﻿<!--/*
+<%--////////////////////////////////////////////////////GTON原创作品-Struts图书馆管理系统//////////////////////////////////////////////////////////////
+////////////所用技术:jsp2.0+servlet2.4+jstl1.1+Struts1.2+sqlserver2000+tomcat5.5/////////////////////////////////////
+/////////////////////////////////////////////////////专业制作网站 专业制作毕业设计////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////QQ:27612285//////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////Mail:punkwang@126.com////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////WEB:www.98202.com www.630cn.com//////////////////////////////////////////////////////
+////////////////////////////////////////////////////qq群:20665503////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////求高薪工作一个有意者联系本人/////////////////////////////////////////////////////////
+////////////////////////////////////////////////////Phone:010-81110277(王先生)///////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--%>
+<%--接 毕业设计业务 网站业务 商业网站 个人网站 商城系统 企业主页 JSP ASP.net PHP !!! 
+
+业务种类 
+
+网站业务： 商业网站 个人网站 商城系统 企业主页 等中小型网站（asp, jsp ,php ,asp.net） 
+
+毕业设计业务:java（j2ee j2se） vb delphi php .net等毕设业务 
+
+模块业务：各种中小型模块 java .net 
+
+如有需要 价格细谈 QQ:27612285 
+
+我的网站 
+HTTP://www.98202.com 
+HTTP://www.do3w.com 
+HTTP://www.201cn.com 
+HTTP://www.630cn.com--%>
+
+*/--><?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <form-beans>
+    <form-bean name="usersLoginForm" type="com.lightwing.formbean.UsersLoginForm" />
+    <form-bean name="usersRegForm" type="com.lightwing.formbean.UsersRegForm" />
+    <form-bean name="usersChengeInfoForm" type="com.lightwing.formbean.UsersChengeInfoForm" />
+    <form-bean name="adminLoginForm" type="com.lightwing.formbean.admin.AdminLoginForm" />
+    <form-bean name="insertBooksForm" type="com.lightwing.formbean.admin.InsertBooksForm" />
+    <form-bean name="updateBooksForm" type="com.lightwing.formbean.admin.UpdateBooksForm" />
+    <form-bean name="giveForm" type="com.lightwing.formbean.admin.GiveForm" />
+  </form-beans>
+  <global-forwards>
+    <forward name="index" path="/index.jsp" />
+    <forward name="admin_index" path="/admin/index.jsp" />
+  </global-forwards>
+  <action-mappings>
+    <action input="/login.jsp" name="usersLoginForm" path="/UsersLoginAction" scope="request" type="com.lightwing.action.user.UsersLoginAction" validate="true" />
+    <action input="/reg.jsp" name="usersRegForm" path="/UsersRegAction" scope="request" type="com.lightwing.action.user.UsersRegAction" validate="true">
+      <forward name="regMsg" path="/regMsg.jsp" />
+    </action>
+    <action input="/index.jsp?action=4" name="usersChengeInfoForm" path="/ChengeUserInfoAction" scope="request" type="com.lightwing.action.user.ChengeUserInfoAction" validate="true" />
+    <action path="/BooksPageAction" type="com.lightwing.action.user.BooksPageAction" />
+    <action path="/BookCarAction" type="com.lightwing.action.user.BookCarAction">
+      <forward name="car" path="/lend.jsp" />
+    </action>
+    <action path="/LendBookAction" type="com.lightwing.action.user.LendBookAction">
+      <forward name="car" path="/lend.jsp" />
+    </action>
+    <action path="/LendBookListAction" type="com.lightwing.action.user.LendBookListAction" />
+    <action input="/admin/login.jsp" name="adminLoginForm" path="/admin/AdminLoginAction" scope="request" type="com.lightwing.action.admin.AdminLoginAction" validate="true" />
+    <action input="/admin/insertBook.jsp" name="insertBooksForm" path="/admin/InsertBooksAction" scope="request" type="com.lightwing.action.admin.InsertBooksAction" validate="true" />
+    <action path="/admin/AdminBooksPageAction" type="com.lightwing.action.admin.AdminBooksPageAction" />
+    <action path="/admin/EditBooksAction" type="com.lightwing.action.admin.EditBooksAction">
+      <forward name="updateBook" path="/admin/updatebook.jsp" />
+    </action>
+    <action input="/admin/updatebook.jsp" name="updateBooksForm" path="/admin/UpdateBooksAction" scope="request" type="com.lightwing.action.admin.UpdateBooksAction" validate="true">
+      <forward name="updatebooks" path="/admin/updatebook.jsp" />
+    </action>
+    <action path="/admin/LendPageAction" type="com.lightwing.action.admin.LendPageAction" />
+    <action path="/admin/UsersPageAction" type="com.lightwing.action.admin.UsersPageAction" />
+    <action path="/admin/PunishPageAction" type="com.lightwing.action.admin.PunishPageAction" />
+    <action path="/admin/DeletePunishAction" type="com.lightwing.action.admin.DeletePunishAction">
+      <forward name="punishPage" path="/admin/PunishPageAction.do" />
+    </action>
+    <action input="/admin/givebook.jsp" name="giveForm" path="/admin/GiveAction" scope="request" type="com.lightwing.action.admin.GiveAction" validate="true" />
+    <action path="/UserPunishPageAction" type="com.lightwing.action.user.UserPunishPageAction" />
+    <action path="/OutAction" type="com.lightwing.action.user.OutAction" />
+    <action path="/admin/AdminOutAction" type="com.lightwing.action.admin.AdminOutAction" />
+  </action-mappings>
+  <message-resources parameter="ApplicationResources" />
+</struts-config>
+
